@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nix-settings.nix
+      ./graphics.nix
     ];
 
   # Bootloader.
@@ -44,6 +45,8 @@
     LC_TIME = "en_IN";
   };
 
+
+fonts.packages = with pkgs; [corefonts fira-code];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -79,11 +82,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sanuki = {
     isNormalUser = true;
     description = "sanuki";
     extraGroups = [ "networkmanager" "wheel" "storage" "power" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -103,12 +108,6 @@
     wget
     neovim
     git
-    vscode-fhs
-    qbittorrent
-    google-chrome
-    anytype
-
-    warp-terminal
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -118,6 +117,8 @@
      enable = true;
      enableSSHSupport = true;
    };
+
+   programs.direnv.enable = true;
 
   # List services that you want to enable:
 

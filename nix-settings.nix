@@ -6,6 +6,7 @@
 		};
 		settings = {
 			experimental-features = [ "nix-command" "flakes" ];
+		always-allow-substitutes = true;
 
 			auto-optimise-store = true;
 			sandbox = true;
