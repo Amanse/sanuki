@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -29,9 +29,7 @@
           ts = {
             enable = true;
             lsp.enable = true;
-            treesitter = {
-              enable = true;
-            };
+            treesitter = { enable = true; };
           };
           go.enable = true;
           svelte.enable = true;
@@ -39,7 +37,10 @@
 
         treesitter = {
           enable = true;
-          grammars = with pkgs; [tree-sitter-grammars.tree-sitter-typescript tree-sitter-grammars.tree-sitter-templ];
+          grammars = with pkgs; [
+            tree-sitter-grammars.tree-sitter-typescript
+            tree-sitter-grammars.tree-sitter-templ
+          ];
         };
 
         extraPlugins = with pkgs.vimPlugins; {
@@ -52,7 +53,7 @@
           };
         };
 
-        optPlugins = ["plenary-nvim"];
+        optPlugins = [ "plenary-nvim" ];
 
         # vim.startPlugins = [pkgs.vimPlugins.undotree pkgs.vimPlugins.harpoon];
 
@@ -83,9 +84,7 @@
           };
         };
 
-        binds = {
-          whichKey.enable = true;
-        };
+        binds = { whichKey.enable = true; };
 
         git = {
           enable = true;
@@ -93,9 +92,7 @@
           # gitsigns.codeActions = true;
         };
 
-        comments = {
-          comment-nvim.enable = true;
-        };
+        comments = { comment-nvim.enable = true; };
 
         theme = {
           enable = true;
@@ -105,22 +102,16 @@
         };
         autopairs.nvim-autopairs.enable = true;
 
-        autocomplete.nvim-cmp = {
-          enable = true;
-        };
+        autocomplete.nvim-cmp = { enable = true; };
 
         telescope = {
           enable = true;
-          mappings = {
-            findFiles = "<leader>pf";
-          };
+          mappings = { findFiles = "<leader>pf"; };
         };
 
         tabline.nvimBufferline = {
           enable = true;
-          mappings = {
-            closeCurrent = "<leader>bx";
-          };
+          mappings = { closeCurrent = "<leader>bx"; };
         };
 
         ui = {
@@ -132,19 +123,21 @@
           normal = {
             # "<leader>pf" = {action = ":Telescope find_files<CR>";};
             # "<leader>p" = {action = "\"_dP";};
-            "<leader>y" = {action = "\"+y";};
-            "<leader>u" = {action = ":UndotreeToggle<CR>";};
-            "<leader>f" = {action = ":lua vim.lsp.buf.format()<CR>";};
-            "<leader>d" = {action = "\"_d";};
+            "<leader>y" = { action = ''"+y''; };
+            "<leader>u" = { action = ":UndotreeToggle<CR>"; };
+            "<leader>f" = { action = ":lua vim.lsp.buf.format()<CR>"; };
+            "<leader>d" = { action = ''"_d''; };
             # "<leader>a" = ":lua require(\"harpoon.mark\").add_file()<CR>";
             # "<leader>q" = ":lua require(\"harpoon.ui\").toggle_quick_menu()<CR>";
-            "<leader>pv" = {action = ":E<CR>";};
-            "<leader>q" = {action = ":lua require('harpoon'):list():append()<CR>";};
+            "<leader>pv" = { action = ":E<CR>"; };
+            "<leader>q" = {
+              action = ":lua require('harpoon'):list():append()<CR>";
+            };
           };
           visual = {
-            "<leader>y" = {action = "\"+y";};
-            "<leader>p" = {action = "\"_dP";};
-            "<leader>d" = {action = "\"_d";};
+            "<leader>y" = { action = ''"+y''; };
+            "<leader>p" = { action = ''"_dP''; };
+            "<leader>d" = { action = ''"_d''; };
           };
         };
       };

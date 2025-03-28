@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   hardware.graphics = { # hardware.graphics since NixOS 24.11
     enable = true;
     extraPackages = with pkgs; [
@@ -8,5 +8,6 @@
     ];
   };
 
-  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
+  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux;
+    [ intel-vaapi-driver ];
 }

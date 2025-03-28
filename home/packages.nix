@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.go.enable = true;
 
   home.packages = with pkgs; [
@@ -6,11 +6,11 @@
     qbittorrent
     google-chrome
     anytype
-lollypop
-wine
-mpv
-vlc
-htop
+    lollypop
+    wine
+    mpv
+    vlc
+    htop
 
     warp-terminal
   ];

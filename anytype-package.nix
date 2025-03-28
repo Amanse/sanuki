@@ -5,8 +5,10 @@ self: super: {
     version = "0.45.3";
 
     src = super.fetchurl {
-      url = "https://github.com/anyproto/anytype-ts/releases/download/v0.45.3/Anytype-0.45.3.AppImage";
-      sha256 = "0d0hkgf6wxr5yx2wzl7rfwlxxh2gxl3d1a76wzlywwf8dxjv7r7j";  # Update with the correct sha256 hash
+      url =
+        "https://github.com/anyproto/anytype-ts/releases/download/v0.45.3/Anytype-0.45.3.AppImage";
+      sha256 =
+        "0d0hkgf6wxr5yx2wzl7rfwlxxh2gxl3d1a76wzlywwf8dxjv7r7j"; # Update with the correct sha256 hash
     };
 
     nativeBuildInputs = [ super.appimage-run ];

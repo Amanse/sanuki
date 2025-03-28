@@ -1,9 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
-}: {
+{ inputs, config, pkgs, ... }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "sanuki";
@@ -15,11 +10,11 @@
     # ./alacritty.nix
     # ./waybar
     ./zsh.nix
-    # ./neovim.nix
+    ./neovim.nix
     ./git.nix
     # ./dark-mode.nix
 
-    # inputs.nvf.homeManagerModules.default
+    inputs.nvf.homeManagerModules.default
   ];
 
   # This value determines the Home Manager release that your configuration is

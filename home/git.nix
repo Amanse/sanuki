@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   # home.file.".ssh/allowed_signers".text = "* ${builtins.readFile /home/me/.ssh/id_rsa.pub}";
 
   programs.git = {
@@ -30,7 +30,8 @@
       d = "diff";
       c = "commit";
       cm = "commit -m";
-      l = ''log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'';
+      l = ''
+        log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'';
       p = "push";
       a = "add .";
     };

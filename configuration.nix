@@ -1,22 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./nix-settings.nix
-      ./graphics.nix
-    ];
+{ config, pkgs, ... }: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./nix-settings.nix
+    ./graphics.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.initrd.luks.devices."luks-feaf7420-c8c8-4cfa-91b2-863f4e56c00f".device = "/dev/disk/by-uuid/feaf7420-c8c8-4cfa-91b2-863f4e56c00f";
+  boot.initrd.luks.devices."luks-feaf7420-c8c8-4cfa-91b2-863f4e56c00f".device =
+    "/dev/disk/by-uuid/feaf7420-c8c8-4cfa-91b2-863f4e56c00f";
   networking.hostName = "nyx"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -45,8 +44,8 @@
     LC_TIME = "en_IN";
   };
 
-
-fonts.packages = with pkgs; [corefonts fira-code];
+  services.udisks2.enable = true;
+  fonts.packages = with pkgs; [ corefonts fira-code-nerdfont ];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -89,14 +88,14 @@ fonts.packages = with pkgs; [corefonts fira-code];
     description = "sanuki";
     extraGroups = [ "networkmanager" "wheel" "storage" "power" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        #  thunderbird
+      ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -108,17 +107,18 @@ fonts.packages = with pkgs; [corefonts fira-code];
     wget
     neovim
     git
+    ntfs3g
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
-   programs.direnv.enable = true;
+  programs.direnv.enable = true;
 
   # List services that you want to enable:
 
@@ -138,5 +138,4 @@ fonts.packages = with pkgs; [corefonts fira-code];
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
