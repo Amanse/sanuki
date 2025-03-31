@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -12,10 +16,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
-  boot.initrd.luks.devices."luks-feaf7420-c8c8-4cfa-91b2-863f4e56c00f".device =
-    "/dev/disk/by-uuid/feaf7420-c8c8-4cfa-91b2-863f4e56c00f";
+  boot.initrd.luks.devices."luks-feaf7420-c8c8-4cfa-91b2-863f4e56c00f".device = "/dev/disk/by-uuid/feaf7420-c8c8-4cfa-91b2-863f4e56c00f";
   networking.hostName = "nyx"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -45,7 +48,7 @@
   };
 
   services.udisks2.enable = true;
-  fonts.packages = with pkgs; [ corefonts fira-code-nerdfont ];
+  fonts.packages = with pkgs; [corefonts fira-code-nerdfont];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -86,12 +89,11 @@
   users.users.sanuki = {
     isNormalUser = true;
     description = "sanuki";
-    extraGroups = [ "networkmanager" "wheel" "storage" "power" ];
+    extraGroups = ["networkmanager" "wheel" "storage" "power"];
     shell = pkgs.zsh;
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      #  thunderbird
+    ];
   };
 
   # Install firefox.
@@ -108,6 +110,7 @@
     neovim
     git
     ntfs3g
+    ollama
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
